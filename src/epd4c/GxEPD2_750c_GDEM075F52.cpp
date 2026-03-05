@@ -243,7 +243,7 @@ void GxEPD2_750c_GDEM075F52::writeImage(const uint8_t* black, const uint8_t* col
           for (int16_t l = 0; l < 4; l++)
           {
             out_data <<= 2;
-            if (!(color_data & 0x80)) out_data |= 0x03; // red
+            if (!(color_data & 0x80)) out_data |= black_data & 0x80 ? 0x03 : 0x02; // red or yellow
             else out_data |= black_data & 0x80 ? 0x01 : 0x00; // white or black
             black_data <<= 1;
             color_data <<= 1;
