@@ -119,6 +119,7 @@ class GxEPD2
       GDEY116Z91,
       GDEY1248Z51,
       GDEM133Z91,
+      ZJY800480_075BABMFGN_R, // 800x480x3 ePaper from ZJY Technology
       // 4-color
       GDEM0154F51H,
       GDEY0213F51,

@@ -108,14 +108,14 @@ class GxEPD2_EPD
     void _reset();
     void _waitWhileBusy(const char* comment = 0, uint16_t busy_time = 5000);
     void _writeCommand(uint8_t c);
-    void _writeData(uint8_t d);
+    uint8_t _writeData(uint8_t d);
     void _writeData(const uint8_t* data, uint16_t n);
     void _writeDataPGM(const uint8_t* data, uint16_t n, int16_t fill_with_zeroes = 0);
     void _writeDataPGM_sCS(const uint8_t* data, uint16_t n, int16_t fill_with_zeroes = 0);
     void _writeCommandData(const uint8_t* pCommandData, uint8_t datalen);
     void _writeCommandDataPGM(const uint8_t* pCommandData, uint8_t datalen);
     void _startTransfer();
-    void _transfer(uint8_t value);
+    uint8_t _transfer(uint8_t value);
     void _endTransfer();
     // additions for read from OTP
     uint8_t _readData();

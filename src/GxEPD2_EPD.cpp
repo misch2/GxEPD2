@@ -176,6 +176,7 @@ void GxEPD2_EPD::_waitWhileBusy(const char* comment, uint16_t busy_time)
 
 void GxEPD2_EPD::_writeCommand(uint8_t c)
 {
+  // Serial.printf("[michal/generic FIXME] -> _writeCommand(0x%02X)\n", c);
   _pSPIx->beginTransaction(_spi_settings);
   if (_dc >= 0) digitalWrite(_dc, LOW);
   if (_cs >= 0) digitalWrite(_cs, LOW);
@@ -185,13 +186,16 @@ void GxEPD2_EPD::_writeCommand(uint8_t c)
   _pSPIx->endTransaction();
 }
 
-void GxEPD2_EPD::_writeData(uint8_t d)
+uint8_t GxEPD2_EPD::_writeData(uint8_t d)
 {
+  // Serial.printf("[michal/generic FIXME]    -> _writeData(0x%02X)\n", d);
   _pSPIx->beginTransaction(_spi_settings);
   if (_cs >= 0) digitalWrite(_cs, LOW);
-  _pSPIx->transfer(d);
+  uint8_t ret = _pSPIx->transfer(d);
   if (_cs >= 0) digitalWrite(_cs, HIGH);
   _pSPIx->endTransaction();
+  // Serial.printf("[michal/generic FIXME]        = 0x%02X\n", ret);
+  return ret;
 }
 
 void GxEPD2_EPD::_writeData(const uint8_t* data, uint16_t n)
@@ -278,9 +282,9 @@ void GxEPD2_EPD::_startTransfer()
   if (_cs >= 0) digitalWrite(_cs, LOW);
 }
 
-void GxEPD2_EPD::_transfer(uint8_t value)
+uint8_t GxEPD2_EPD::_transfer(uint8_t value)
 {
-  _pSPIx->transfer(value);
+  return _pSPIx->transfer(value);
 }
 
 void GxEPD2_EPD::_endTransfer()
